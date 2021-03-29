@@ -14,13 +14,11 @@ Builder.load_file("smp_app.kv")
 class SmpLayout(BoxLayout):
     
     def mostrar_resultado(self):
-        if self.numerador.text and self.denominador.text and not self.numerador.text.isalpha() and not self.denominador.text.isalpha():
-            try:
-                self.resultado.text = "[size=50][color=#1e3d59]" + simplificar(int(self.numerador.text), int(self.denominador.text))
-            except:
-                pass
-        else:
-            self.resultado.text = "[size=32][color=#1e3d59]Preencha os dois campos\n e/ou utilize apenas números"
+        if self.numerador.text and self.denominador.text:
+            num, den = simplificar(int(self.numerador.text), int(self.denominador.text))
+            self.resultado_num.text = "[size=112][color=#1e3d59]"+str(num)
+            self.resultador_den.text = "[size=112][color=#1e3d59]"+str(den)
+  
 
 
 class SmpApp(App):

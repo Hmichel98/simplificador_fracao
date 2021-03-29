@@ -1,11 +1,22 @@
 #: kivy 1.9.0
 
+<Numeros@TextInput>
+    hint_text_color:30/255, 61/255, 89/255, 1
+    background_color:245/255, 240/255, 225/255, 1
+    foreground_color:30/255, 61/255, 89/255, 1
+    font_size:152
+    input_filter:"int"
+    size_hint:0.8, 0.2
+    pos_hint:{"center_x": 0.5}
+
+
 <SmpLayout>
     orientation:"vertical"
-    spacing:100
+    spacing:150
     numerador:_numerador 
     denominador:_denominador
-    resultado:_resultado
+    resultado_num:_resultado_num 
+    resultador_den:_resultado_den
     canvas.before:
         Color:
             rgba:245/255, 240/255, 225/255, 1
@@ -13,39 +24,44 @@
             size: root.width, root.height
     BoxLayout:
         orientation:"vertical"
-        size_hint:1, 0.2
+        size_hint:0.7, 0.2
         spacing:50
         padding: 50
-        TextInput:
+        Numeros:
             id: _numerador
-            hint_text:"Numerador"
-            hint_text_color:30/255, 61/255, 89/255
-            background_color:245/255, 240/255, 225/255, 1
-            foreground_color:30/255, 61/255, 89/255
-            font_size:45
-            size_hint:0.8, 0.3
-            pos_hint:{"center_x": 0.5}
-        TextInput:
-            id: _denominador
-            hint_text:"Denominador"
-            hint_text_color:30/255, 61/255, 89/255
-            background_color:245/255, 240/255, 225/255, 1
-            foreground_color:30/255, 61/255, 89/255
-            font_size:45
-            size_hint:0.8, 0.3
-            pos_hint:{"center_x": 0.5}
+            hint_text:"Num..."
+            focus:True
 
+        Numeros:
+            id: _denominador
+            hint_text:"Den..."
+    
     BoxLayout:
         size_hint:1, 0.3
-        Label:
-            markup:True
-            id: _resultado
-            text:"[size=50][color=#1e3d59]Resultado"
+        BoxLayout:
+            orientation:"vertical"
+            
+            Label:
+                id:_resultado_num
+                markup:True
+                text:"[size=112][color=#1e3d59]Numerador"
+            
+                canvas.before:
+                    Color:
+                        rgba: 30/255, 61/255, 89/255, 1
+                    Line:
+                        points:self.x, self.y-20, self.width, self.y-20
+                        width:10
+            
+            Label:
+                id:_resultado_den
+                markup:True
+                text:"[size=112][color=#1e3d59]Denominador"
         
         Button:
             markup:True
-            text:"[size=32][color=#1e3d59]Calcular"
-            size_hint: 0.3, 1
+            text:"[size=82][color=#1e3d59]Calcular"
+            size_hint: 0.4, 1
             on_press: root.mostrar_resultado()
             background_normal:''
             background_color:(255/255, 110/255, 64/255, 1) if self.state=="normal" else (255/255, 193/255, 59/255, 1)

@@ -39,5 +39,5 @@ def simplificar(numerador, denominador):
             numerador_smp = -numerador_smp
         if denom_is_neg:
             denominador_smp = -denominador_smp
-        return f"{numerador_smp}\n----------\n{denominador_smp}"
+        return numerador_smp, denominador_smp
     return '1'
