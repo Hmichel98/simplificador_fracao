@@ -1,0 +1,51 @@
+#: kivy 1.9.0
+
+<SmpLayout>
+    orientation:"vertical"
+    spacing:100
+    numerador:_numerador 
+    denominador:_denominador
+    resultado:_resultado
+    canvas.before:
+        Color:
+            rgba:245/255, 240/255, 225/255, 1
+        Rectangle:
+            size: root.width, root.height
+    BoxLayout:
+        orientation:"vertical"
+        size_hint:1, 0.2
+        spacing:50
+        padding: 50
+        TextInput:
+            id: _numerador
+            hint_text:"Numerador"
+            hint_text_color:30/255, 61/255, 89/255
+            background_color:245/255, 240/255, 225/255, 1
+            foreground_color:30/255, 61/255, 89/255
+            font_size:45
+            size_hint:0.8, 0.3
+            pos_hint:{"center_x": 0.5}
+        TextInput:
+            id: _denominador
+            hint_text:"Denominador"
+            hint_text_color:30/255, 61/255, 89/255
+            background_color:245/255, 240/255, 225/255, 1
+            foreground_color:30/255, 61/255, 89/255
+            font_size:45
+            size_hint:0.8, 0.3
+            pos_hint:{"center_x": 0.5}
+
+    BoxLayout:
+        size_hint:1, 0.3
+        Label:
+            markup:True
+            id: _resultado
+            text:"[size=50][color=#1e3d59]Resultado"
+        
+        Button:
+            markup:True
+            text:"[size=32][color=#1e3d59]Calcular"
+            size_hint: 0.3, 1
+            on_press: root.mostrar_resultado()
+            background_normal:''
+            background_color:(255/255, 110/255, 64/255, 1) if self.state=="normal" else (255/255, 193/255, 59/255, 1)
